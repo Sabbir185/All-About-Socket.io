@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Socket</title>
+</head>
+
+<body>
+
+  <!-- <h3 id="timeId" style="text-align: center;"></h3> -->
+
+  <input type="text" id="name">
+  <input type="submit" value="Send" onclick="send()">
+
+  <p id="broadcastingId"></p>
+
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    // let socket = io();
+
+    // simple message
+    // socket.on("message", (msg) => {
+    //   document.write(msg)
+    // })
+
+
+    // dynamic data show
+    // socket.on("message", (msg) => {
+    //   const timeEle = document.getElementById("timeId");
+    //   timeEle.innerHTML = "";
+    //   timeEle.innerHTML = msg;
+    // })
+
+
+    // customer event calling, not message, here MyTime :)
+    // socket.on("MyTime", (msg) => {
+    //   const timeEle = document.getElementById("timeId");
+    //   timeEle.innerHTML = "";
+    //   timeEle.innerHTML = msg + ' Now';
+    // })
+
+
+    // send data from client to server side
+    // const send = () => {
+    //   const getName = document.getElementById('name').value;
+    //   socket.send(getName);
+    // }
+
+    // get broadcast data
+    // socket.on("MyBroadcast", (data) => {
+    //   document.getElementById("broadcastingId").innerHTML = '';
+    //   document.getElementById("broadcastingId").innerHTML = data
+    // })
+
+
+    // Namespace or specific grouping call
+    let socket = io("/buy");
+    socket.on("MyEvent", (msg) => {
+      document.write(msg)
+    })
+    
+    let sockets = io("/sell");
+    sockets.on("MyEvent", (msg) => {
+      document.write(msg)
+    })
+
+
+
+
+  </script>
+</body>
+
+</html>
